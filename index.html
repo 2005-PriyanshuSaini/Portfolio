@@ -2,14 +2,112 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Welcome Animation</title>
+  <title>My Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Greeting container styles */
+    .greeting-container {
+      position: fixed; /* Ensure it stays at the top during animation */
+      top: 0;
+      left: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      background-color: #3a3a3a; /* Dark mode background for greeting container */
+      display: flex; /* Center content */
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Smooth slide and fade */
+      z-index: 999; /* Ensure it stays above other elements during animation */
+    }
+
+    body.light-mode .greeting-container {
+      background-color: #dddddd; /* Light mode background for greeting container */
+      color: #333333; /* Light mode text color */
+    }
+
+    .greeting-container h1 {
+      font-size: 2.5rem; /* Smaller text size */
+      animation: fade 0.4s ease-in-out;
+      font-weight: 400; /* Slightly heavier for headings */
+    }
+
+    @keyframes fade {
+      0% { opacity: 0; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+  </style>
 </head>
 <body>
-  <div class="greeting-container">
+  <nav class="navbar">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle">
+      <img id="theme-icon" src="/moon-outline.svg" alt="Theme Icon" />
+    </button> <!-- Round toggle button -->
+  </nav>
+  <div class="greeting-container" id="home">
     <h1 id="greeting">Hello</h1>
   </div>
+  <div id="main-content">
+    <section class="intro">
+      <div class="intro-text">
+        <h1>Hi, Priyanshu Here 👋</h1>
+        <p>20-year-old software developer from India. I like to develop full-stack,<br> self-hosting homelabs, and get coding advice from my turtle, Luffy.</p>
+        <p><a href="#">Ask the chatbot anything about me ↗</a></p>
+        <div class="buttons">
+          <button>Resume</button>
+          <button>LinkedIn</button>
+          <button>GitHub</button>
+          <button>Email</button>
+        </div>
+      </div>
+      <div class="intro-image">
+        <img src="./profile.png" alt="Profile Image">
+      </div>
+    </section>
+    <section id="projects">
+      <h2>Projects</h2>
+      <p>Here are some of my projects.</p>
+    </section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Feel free to reach out to me!</p>
+    </section>
+  </div>
+  <footer class="footer">
+    <p>&copy; 2023 Priyanshu. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="social-bar">
+      <a href="https://twitter.com" target="_blank" class="icon" title="Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://www.behance.net" target="_blank" class="icon" title="Behance">
+        <i class="fab fa-behance"></i>
+      </a>
+      <a href="https://github.com" target="_blank" class="icon" title="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://www.linkedin.com" target="_blank" class="icon" title="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://dribbble.com" target="_blank" class="icon" title="Dribbble">
+        <i class="fab fa-dribbble"></i>
+      </a>
+      <a href="https://discord.com" target="_blank" class="icon" title="Discord">
+        <i class="fab fa-discord"></i>
+      </a>
+    </div>
+  </footer>
   <script src="/script.js"></script>
 </body>
 </html>

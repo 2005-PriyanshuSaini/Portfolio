@@ -1,26 +1,69 @@
 const greetings = [
-  "• Hello", "• Hola", "• Bonjour", "• Ciao", "• Hallo", "• Olá", "• Salam",
-  "• Hej", "• Nǐ hǎo", "• Konnichiwa", "• Annyeong", "• Merhaba", "• Shalom",
-  "• Sawubona", "• Yā", "• Privet", "• Vanakkam", "• Sat Sri Akal",
+  "• Hello", "• Hola", "• Bonjour", "• Kon'nichiwa", "• Hallo", "• Olá",
+  "• Hej", "• Nǐ hǎo", "• Merhaba","• Sawubona", 
+  "• Dia Duit", "• 你好", "• привет", "• Halo",
 ];
 
 const finalGreeting = "• नमस्ते";
 const greetingElement = document.getElementById("greeting");
+const greetingContainer = document.querySelector(".greeting-container");
+const mainContent = document.getElementById("main-content");
+const navbar = document.querySelector(".navbar");
 
 let index = 0;
-let delay = 500;
+let delay = 200; // Faster initial delay
 
 function showNextGreeting() {
   if (index < greetings.length) {
     greetingElement.textContent = greetings[index];
     index++;
-    delay *= 0.85; // speed up
+    delay *= 0.9; // Speed up slightly
     setTimeout(showNextGreeting, delay);
   } else {
     greetingElement.textContent = finalGreeting;
+    setTimeout(() => {
+      greetingContainer.style.transform = "translateY(-100%)"; // Slide up
+      greetingContainer.style.opacity = 0; // Fade out
+      setTimeout(() => {
+        greetingContainer.style.display = "none"; // Hide the greeting container to allow scrolling
+        navbar.style.display = "flex"; // Show the navbar
+        mainContent.style.display = "block"; // Show main content
+        setTimeout(() => {
+          mainContent.style.opacity = 1; // Fade in main content
+        }, 100); // Small delay for smooth transition
+      }, 500); // Wait for slide-up animation to complete
+    }, 1000); // Wait before sliding up
   }
 }
 
 window.onload = () => {
+  mainContent.style.display = "none"; // Hide main content initially
+  navbar.style.display = "none"; // Ensure navbar is fully hidden
+  greetingContainer.style.transition = "transform 0.5s ease-in-out, opacity 0.5s ease-in-out"; // Smooth slide and fade
+  mainContent.style.transition = "opacity 0.5s ease-in-out"; // Smooth fade
+  mainContent.style.opacity = 0;
   setTimeout(showNextGreeting, delay);
 };
+
+const themeToggle = document.getElementById("theme-toggle");
+const themeIcon = document.getElementById("theme-icon");
+
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("light-mode"); // Toggle light mode class
+  if (document.body.classList.contains("light-mode")) {
+    themeIcon.src = "/sun-outline.svg"; // Switch to sun icon
+    navbar.style.backgroundColor = "#dddddd"; // Light mode navbar background
+    greetingContainer.style.backgroundColor = "#dddddd"; // Light mode greeting container background
+  } else {
+    themeIcon.src = "/moon-outline.svg"; // Switch to moon icon
+    navbar.style.backgroundColor = "#3a3a3a"; // Dark mode navbar background
+    greetingContainer.style.backgroundColor = "#3a3a3a"; // Dark mode greeting container background
+  }
+});
+
+// Ensure the site starts in dark mode
+document.body.classList.remove("light-mode");
+themeIcon.src = "/moon-outline.svg"; // Default icon for dark mode
+navbar.style.backgroundColor = "#3a3a3a"; // Ensure navbar starts with dark mode background
+greetingContainer.style.backgroundColor = "#3a3a3a"; // Ensure greeting container starts with dark mode background
+
