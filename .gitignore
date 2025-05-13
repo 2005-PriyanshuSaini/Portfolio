@@ -1,38 +1,38 @@
-env/
-*.pyc
+# Python
 __pycache__/
-env/
+*.pyc
 *.pyo
 *.pyd
-*.db
+env/
+venv/
+ENV/
+.venv/
 *.sqlite3
+
+# Flask/Project config
+instance/
+*.db
+
+# VSCode
+.vscode/
+
+# OS
 .DS_Store
-*.egg-info/
-*.egg
+Thumbs.db
+
+# Environment & secrets
+.env
+*.env
+
+# Uploads & attachments (if any)
+uploads/
 *.log
-*.pot
-*.mo
-*.pot~
-*.swp
-*.swo
-*.swn
-*.bak
-*.tmp
-*.orig
-*.swm
-*.swp
-*.swo
-*.swn
-*.bak   
-*.tmp
-*.orig
-*.swm
-*.swp   
-*.swo
-*.swn
-*.bak
-*.tmp
-*.orig
-*.swm
-*.swp
-*.swo
+
+# Node/npm (if used)
+node_modules/
+
+# Compiled files
+*.so
+*.egg-info/
+dist/
+build/

@@ -40,6 +40,15 @@
   </style>
 </head>
 <body>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="flash-messages">
+        {% for message in messages %}
+          <div class="flash-message">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
   <nav class="navbar">
     <ul>
       <li><a href="#home">Home</a></li>
@@ -52,19 +61,27 @@
     </button> <!-- Round toggle button -->
   </nav>
   <div class="greeting-container" id="home">
-    <h1 id="greeting">Hello</h1>
+    <h1 id="greeting">• Hello</h1>
   </div>
   <div id="main-content">
     <section class="intro">
       <div class="intro-text">
         <h1>Hi, Priyanshu Here 👋</h1>
-        <p>20-year-old software developer from India. I like to develop full-stack,<br> self-hosting homelabs, and get coding advice from my turtle, Luffy.</p>
-        <p><a href="#">Ask the chatbot anything about me ↗</a></p>
+        <p>20-year-old software developer from India.<br> I like to develop full-stack, self-hosting homelabs, and get coding advice from my turtle, Luffy.</p>
         <div class="buttons">
-          <button>Resume</button>
-          <button>LinkedIn</button>
-          <button>GitHub</button>
-          <button>Email</button>
+          <button class="resume-btn">
+            <img src="/resume-icon.svg" alt="Resume" class="resume-icon" />
+            Resume
+          </button>
+          <a href="https://www.linkedin.com" target="_blank" class="icon-btn" title="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://github.com" target="_blank" class="icon-btn" title="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="mailto:your@email.com" class="icon-btn" title="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
         </div>
       </div>
       <div class="intro-image">
@@ -78,6 +95,35 @@
     <section id="contact">
       <h2>Contact</h2>
       <p>Feel free to reach out to me!</p>
+      <form id="contact-form" class="contact-form" enctype="multipart/form-data" method="POST" action="/send-email">
+        <div class="form-group">
+          <label for="from">From</label>
+          <input type="email" id="from" name="from" value="priyanshusaini9991@gmail.com" readonly>
+        </div>
+        <div class="form-group">
+          <label for="user-email">Your Email</label>
+          <input type="email" id="user-email" name="user_email" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" required>
+        </div>
+        <div class="form-group">
+          <label for="body">Message</label>
+          <textarea id="body" name="body" rows="5" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="attachment">Attachment (max 15MB)</label>
+          <label for="attachment" class="file-upload-label">
+            <i class="fas fa-paperclip"></i> Choose File
+          </label>
+          <input type="file" id="attachment" name="attachment" accept="*/*">
+          <span id="file-chosen">No file chosen</span>
+        </div>
+        <button type="submit" class="gmail-btn">
+          <i class="fas fa-paper-plane"></i> Send
+        </button>
+      </form>
     </section>
   </div>
   <footer class="footer">
@@ -91,17 +137,11 @@
       <a href="https://twitter.com" target="_blank" class="icon" title="Twitter">
         <i class="fab fa-twitter"></i>
       </a>
-      <a href="https://www.behance.net" target="_blank" class="icon" title="Behance">
-        <i class="fab fa-behance"></i>
-      </a>
       <a href="https://github.com" target="_blank" class="icon" title="GitHub">
         <i class="fab fa-github"></i>
       </a>
       <a href="https://www.linkedin.com" target="_blank" class="icon" title="LinkedIn">
         <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="https://dribbble.com" target="_blank" class="icon" title="Dribbble">
-        <i class="fab fa-dribbble"></i>
       </a>
       <a href="https://discord.com" target="_blank" class="icon" title="Discord">
         <i class="fab fa-discord"></i>
@@ -109,5 +149,15 @@
     </div>
   </footer>
   <script src="/script.js"></script>
+  <script>
+    // Show selected file name for attachment
+    document.addEventListener('DOMContentLoaded', function() {
+      const fileInput = document.getElementById('attachment');
+      const fileChosen = document.getElementById('file-chosen');
+      fileInput.addEventListener('change', function() {
+        fileChosen.textContent = fileInput.files.length > 0 ? fileInput.files[0].name : 'No file chosen';
+      });
+    });
+  </script>
 </body>
 </html>

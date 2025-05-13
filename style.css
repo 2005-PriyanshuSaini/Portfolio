@@ -17,6 +17,7 @@ body {
   overflow-x: hidden; /* Prevent horizontal scrolling */
   font-weight: 300; /* Lighter font weight */
   transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+  font-size: 14px; /* Make overall text size smaller */
 }
 
 body.light-mode {
@@ -145,28 +146,29 @@ body.light-mode .theme-toggle {
 
 .intro {
   display: flex;
-  justify-content: space-between;
-  align-items: left;
+  justify-content: flex-start; /* Align items to the left */
+  align-items: center; /* Vertically align photo and text */
   padding: 40px;
   max-width: 1200px;
   margin: 0 auto;
-  gap: 20px; /* Add gap between the text and the image */
+  gap: 20px;
 }
 
 .intro-text {
   max-width: 600px;
+  text-align: left; /* Align text to the left for better alignment with photo */
 }
 
 .intro-text h1 {
-  font-size: 2.5rem;
+  font-size: 1.6rem; /* Smaller heading */
   font-weight: 400;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .intro-text p {
-  font-size: 16px;
-  line-height: 1.6;
-  margin-bottom: 20px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 16px;
 }
 
 .intro-text a {
@@ -177,6 +179,52 @@ body.light-mode .theme-toggle {
 .intro-text .buttons {
   display: flex;
   gap: 10px;
+  align-items: center;
+}
+
+.resume-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #444444;
+  color: #fff8dc;
+  transition: background-color 0.3s ease;
+}
+
+.resume-btn:hover {
+  background-color: #555555;
+}
+
+.resume-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #444444;
+  color: #fff8dc;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  border: none;
+  transition: background 0.3s, color 0.3s, transform 0.3s;
+  text-decoration: none;
+}
+
+.icon-btn:hover {
+  background: #fff8dc;
+  color: #444444;
+  transform: scale(1.13);
 }
 
 .intro-text .buttons button {
@@ -195,10 +243,12 @@ body.light-mode .theme-toggle {
 }
 
 .intro-image img {
-  width: 100px; /* Keep the width unchanged */
-  height: 150px; /* Increase the height to make it a cuboid */
+  width: 100px;
+  height: 150px;
   object-fit: cover;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Keep the shadow for aesthetics */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: block;
+  margin: 0; /* Remove any default margin */
 }
 
 .footer {
@@ -265,26 +315,219 @@ body.light-mode .footer-links a {
   font-size: 0.9rem; /* Smaller icon size */
   color: #3a3a3a; /* Icon color */
   text-decoration: none;
+  box-shadow: none;
 }
 
 .social-bar .icon:hover {
-  transform: translateY(-6px); /* Pop out of the bar */
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3); /* Add shadow */
-  z-index: 2; /* Ensure the hovered icon is above others */
+  transform: translateY(-8px) scale(1.2);
+  box-shadow: 0 3px 16px 4px rgba(255,255,255,0.5); /* Stronger white aura */
+  z-index: 2;
 }
 
-.social-bar .icon:hover ~ .icon {
-  transform: scale(0.85); /* Slightly shrink neighboring icons */
+.social-bar .icon:focus {
+  outline: none;
 }
 
-.social-bar .icon:hover::before {
-  content: '';
-  position: absolute;
-  width: 40px; /* Adjusted size for the circle */
-  height: 40px; /* Adjusted size for the circle */
-  border: 0.5px solid #000; /* Thinner black circle around the hovered icon */
-  border-radius: 50%;
-  top: -5px;
-  left: -5px;
-  z-index: -1; /* Ensure the circle is behind the icon */
+.social-bar .icon:not(:hover) {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.social-bar .icon:hover ~ .icon,
+.social-bar .icon:has(~ .icon:hover) {
+  /* No effect on right-side siblings when left icon is hovered */
+}
+
+.social-bar .icon:hover + .icon,
+.social-bar .icon:has(+ .icon:hover) {
+  /* No effect on left-side siblings when right icon is hovered */
+}
+
+/* Aura for immediate neighbors */
+.social-bar .icon:hover + .icon,
+.social-bar .icon:has(+ .icon:hover) {
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.3);
+  z-index: 1;
+}
+.social-bar .icon:has(~ .icon:hover) {
+  /* For left neighbor in browsers that support :has */
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.3);
+  z-index: 1;
+}
+
+/* Fallback for browsers without :has support (only right neighbor gets aura) */
+.social-bar .icon:hover + .icon {
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.3);
+  z-index: 1;
+}
+
+.contact-form {
+  max-width: 400px;
+  margin: 30px auto 0 auto;
+  background: #232323;
+  border-radius: 10px;
+  padding: 24px 20px 16px 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+body.light-mode .contact-form {
+  background: #f7f7f7;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-form label {
+  font-size: 0.95em;
+  color: #fff8dc;
+  margin-bottom: 2px;
+}
+
+body.light-mode .contact-form label {
+  color: #333;
+}
+
+.contact-form input[type="email"],
+.contact-form input[type="text"],
+.contact-form textarea {
+  padding: 8px 10px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background: #2c2c2c;
+  color: #fff8dc;
+  font-size: 1em;
+  resize: none;
+}
+
+body.light-mode .contact-form input[type="email"],
+body.light-mode .contact-form input[type="text"],
+body.light-mode .contact-form textarea {
+  background: #fff;
+  color: #222;
+  border: 1px solid #bbb;
+}
+
+.contact-form input[readonly] {
+  background: #444;
+  color: #bbb;
+  cursor: not-allowed;
+}
+
+body.light-mode .contact-form input[readonly] {
+  background: #eee;
+  color: #888;
+}
+
+.contact-form input[type="file"] {
+  display: none; /* Hide the default file input */
+}
+
+.file-upload-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #444444;
+  color: #fff8dc;
+  border-radius: 20px;
+  padding: 7px 16px;
+  font-size: 0.98em;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s, color 0.2s;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-weight: 400;
+}
+
+.file-upload-label:hover {
+  background: #555555;
+  color: #fff;
+}
+
+.file-upload-label i {
+  font-size: 1.2em;
+}
+
+#file-chosen {
+  margin-left: 10px;
+  color: #bbb;
+  font-size: 0.95em;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.contact-form input[type="file"] {
+  background: none;
+  color: #fff8dc;
+  font-size: 0.95em;
+  border: none;
+  padding: 0;
+}
+
+body.light-mode .contact-form input[type="file"] {
+  color: #333;
+}
+
+.gmail-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #1a73e8;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 22px;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(26,115,232,0.10);
+  margin-top: 8px;
+}
+
+.gmail-btn i {
+  font-size: 1.1em;
+}
+
+.gmail-btn:hover {
+  background: #1765c1;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 16px rgba(26,115,232,0.18);
+}
+
+.flash-messages {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 70px;
+  z-index: 2000;
+  position: fixed;
+  left: 0;
+}
+
+.flash-message {
+  background: #1a73e8;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 1em;
+  box-shadow: 0 2px 8px rgba(26,115,232,0.10);
+  animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
 }

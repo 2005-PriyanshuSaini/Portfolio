@@ -1,5 +1,5 @@
 const greetings = [
-  "• Hello", "• Hola", "• Bonjour", "• Kon'nichiwa", "• Hallo", "• Olá",
+  "• Hola", "• Bonjour", "• Kon'nichiwa", "• Hallo", "• Olá",
   "• Hej", "• Nǐ hǎo", "• Merhaba","• Sawubona", 
   "• Dia Duit", "• 你好", "• привет", "• Halo",
 ];
