@@ -1,4 +1,5 @@
 import os
+import re
 import smtplib
 from email.message import EmailMessage
 from flask import Flask, render_template, request, redirect, flash
@@ -12,6 +13,15 @@ app.secret_key = os.getenv("FLASK_SECRET_KEY", "fallback-secret-key")
 GMAIL_USER = os.getenv("GMAIL_USER")
 GMAIL_PASS = os.getenv("GMAIL_PASS")
 
+def is_valid_email(email):
+    # Simple regex for email validation
+    pattern = r"^[\w\.-]+@[\w\.-]+\.\w+$"
+    if not re.match(pattern, email):
+        return False
+    # Only allow gmail.com addresses
+    domain = email.split('@')[-1].lower()
+    return domain == "gmail.com"
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -23,6 +33,11 @@ def send_email():
     subject = request.form.get('subject')
     body = request.form.get('body')
     attachment = request.files.get('attachment')
+
+    # Validate user email
+    if not is_valid_email(user_email):
+        flash("Please enter a valid Gmail address (ending with @gmail.com).")
+        return redirect('/')
 
     # Compose the email
     msg = EmailMessage()

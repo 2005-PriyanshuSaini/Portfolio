@@ -67,3 +67,30 @@ themeIcon.src = "/moon-outline.svg"; // Default icon for dark mode
 navbar.style.backgroundColor = "#3a3a3a"; // Ensure navbar starts with dark mode background
 greetingContainer.style.backgroundColor = "#3a3a3a"; // Ensure greeting container starts with dark mode background
 
+function showTimeline(type) {
+  const workTab = document.getElementById('work-tab');
+  const eduTab = document.getElementById('education-tab');
+  const workTimeline = document.getElementById('work-timeline');
+  const eduTimeline = document.getElementById('education-timeline');
+  const slider = document.querySelector('.tab-slider');
+  if (type === 'work') {
+    workTab.classList.add('active');
+    eduTab.classList.remove('active');
+    workTimeline.style.display = '';
+    eduTimeline.style.display = 'none';
+    if (slider) slider.style.transform = 'translateX(0%)';
+  } else {
+    workTab.classList.remove('active');
+    eduTab.classList.add('active');
+    workTimeline.style.display = 'none';
+    eduTimeline.style.display = '';
+    if (slider) slider.style.transform = 'translateX(100%)';
+  }
+}
+
+// Animate slider on page load
+window.addEventListener('DOMContentLoaded', () => {
+  const slider = document.querySelector('.tab-slider');
+  if (slider) slider.style.transform = 'translateX(0%)';
+});
+

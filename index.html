@@ -6,6 +6,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
   <style>
     /* Greeting container styles */
     .greeting-container {
@@ -67,19 +68,23 @@
     <section class="intro">
       <div class="intro-text">
         <h1>Hi, Priyanshu Here 👋</h1>
+        <div class="intro-location">
+          <span class="location-marker"><i class="fas fa-map-marker-alt"></i></span>
+          <span class="location-text">Haryana, India</span>
+        </div>
         <p>20-year-old software developer from India.<br> I like to develop full-stack, self-hosting homelabs, and get coding advice from my turtle, Luffy.</p>
         <div class="buttons">
-          <button class="resume-btn">
+          <a href="https://drive.google.com/file/d/1-2z_mVgygun_uHoySuZBhAwvxqfFnBQC/view?usp=sharing" target="_blank" class="resume-btn" title="Resume">
             <img src="/resume-icon.svg" alt="Resume" class="resume-icon" />
             Resume
-          </button>
-          <a href="https://www.linkedin.com" target="_blank" class="icon-btn" title="LinkedIn">
+          </a>
+          <a href="https://www.linkedin.com/in/priyanshu-saini-4b4a0a28a/" target="_blank" class="icon-btn" title="LinkedIn">
             <i class="fab fa-linkedin"></i>
           </a>
-          <a href="https://github.com" target="_blank" class="icon-btn" title="GitHub">
+          <a href="https://github.com/2005-PriyanshuSaini" target="_blank" class="icon-btn" title="GitHub">
             <i class="fab fa-github"></i>
           </a>
-          <a href="mailto:your@email.com" class="icon-btn" title="Email">
+          <a href="mailto:priyanshusaini9991@gmail.com" class="icon-btn" title="Email">
             <i class="fas fa-envelope"></i>
           </a>
         </div>
@@ -88,13 +93,106 @@
         <img src="./profile.png" alt="Profile Image">
       </div>
     </section>
+    <section class="timeline-section">
+      <div class="timeline-tabs">
+        <button class="timeline-tab active" id="work-tab" onclick="showTimeline('work')">Work</button>
+        <button class="timeline-tab" id="education-tab" onclick="showTimeline('education')">Education</button>
+        <div class="tab-slider"></div>
+      </div>
+      <div class="timeline-container">
+        <div id="work-timeline" class="timeline-content">
+          <!-- Work Timeline Items -->
+          <div class="timeline-item">
+            <div class="timeline-icon"><img src="./arka.webp" alt="Agilite"></div>
+            <div class="timeline-details">
+              <div class="timeline-date">July 2024 - March 2025</div>
+              <div class="timeline-title">Arka Consultancy</div>
+              <div class="timeline-role">Intern Web and AI Developer</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon"><img src="./cu.jpg" alt="Maximl Labs"></div>
+            <div class="timeline-details">
+              <div class="timeline-date">Jan 2025 - Apr 2025</div>
+              <div class="timeline-title">Research</div>
+              <div class="timeline-role">Researcher</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="education-timeline" class="timeline-content" style="display:none;">
+          <!-- Education Timeline Items -->
+         <div class="timeline-item">
+            <div class="timeline-icon"><img src="./cu.jpg" alt="College"></div>
+            <div class="timeline-details">
+              <div class="timeline-date">2023 - 2027</div>
+              <div class="timeline-title">Chandigarh University</div>
+              <div class="timeline-role">B.E, Computer Science</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon"><img src="./33d.jpeg" alt="College"></div>
+            <div class="timeline-details">
+              <div class="timeline-date">2022 - 2023</div>
+              <div class="timeline-title">GMSSS - 33D</div>
+              <div class="timeline-role">High School Graduate</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon"><img src="./school.png" alt="College"></div>
+            <div class="timeline-details">
+              <div class="timeline-date">2019 - 2020</div>
+              <div class="timeline-title">St. Francis Academy</div>
+              <div class="timeline-role">Matriculation</div>
+            </div>
+          </div>
+
+          <!-- Add more education items as needed -->
+        </div>
+      </div>
+    </section>
     <section id="projects">
-      <h2>Projects</h2>
-      <p>Here are some of my projects.</p>
+      <h2>Featured Projects</h2>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <img src="./landing page anayser.png" alt="Project 1 Background" class="project-card-bg" />
+          <div class="project-card-content">
+            <div class="project-title">Landing Page Analyser</div>
+            <div class="project-desc">Built an intelligent landing page analyzer and screenshot capture tool using advanced image analysis and GPT-4 for persona-based suggestions.</div>
+          </div>
+          <div class="project-card-actions">
+            <a href="https://github.com/2005-PriyanshuSaini/Landing-Page-Analyser.git" target="_blank">
+              <i class="fab fa-github"></i> Source Code
+            </a>
+            <a href="https://project-one-demo.com" target="_blank">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+          </div>
+        </div>
+        <div class="project-card">
+          <img src="./nlp.jpeg" alt="Project 2 Background" class="project-card-bg" />
+          <div class="project-card-content">
+            <div class="project-title">Restaurant Management NLP Chatbot</div>
+            <div class="project-desc">Built a restaurant management NLP chatbot using advanced natural language processing techniques for efficient order handling and customer interaction.</div>
+          </div>
+          <div class="project-card-actions">
+            <a href="https://github.com/2005-PriyanshuSaini/NLP_Chatbot-Dialog_flow.git" target="_blank">
+              <i class="fab fa-github"></i> Source Code
+            </a>
+            <a href="https://project-two-demo.com" target="_blank">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+          </div>
+        </div>
+        <!-- Add more project-card divs as needed -->
+      </div>
     </section>
     <section id="contact">
       <h2>Contact</h2>
-      <p>Feel free to reach out to me!</p>
       <form id="contact-form" class="contact-form" enctype="multipart/form-data" method="POST" action="/send-email">
         <div class="form-group">
           <label for="from">From</label>
@@ -134,16 +232,16 @@
       <a href="#contact">Contact</a>
     </div>
     <div class="social-bar">
-      <a href="https://twitter.com" target="_blank" class="icon" title="Twitter">
+      <a href="https://x.com/Dev_Priyanshu_1" target="_blank" class="icon" title="Twitter">
         <i class="fab fa-twitter"></i>
       </a>
-      <a href="https://github.com" target="_blank" class="icon" title="GitHub">
+      <a href="https://github.com/2005-PriyanshuSaini" target="_blank" class="icon" title="GitHub">
         <i class="fab fa-github"></i>
       </a>
-      <a href="https://www.linkedin.com" target="_blank" class="icon" title="LinkedIn">
+      <a href="https://www.linkedin.com/in/priyanshu-saini-4b4a0a28a/" target="_blank" class="icon" title="LinkedIn">
         <i class="fab fa-linkedin"></i>
       </a>
-      <a href="https://discord.com" target="_blank" class="icon" title="Discord">
+      <a href="https://discordapp.com/users/priyanshu020539" target="_blank" class="icon" title="Discord">
         <i class="fab fa-discord"></i>
       </a>
     </div>
