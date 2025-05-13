@@ -638,12 +638,13 @@ body.light-mode .contact-form input[type="file"] {
   left: 0;
   height: 3px;
   width: 50%;
-  background: linear-gradient(90deg, #1a73e8 0%, #b0bed9 100%);
+  /* Use a yellow-peach gradient matching the theme */
+  background: linear-gradient(90deg, #ffe08a 0%, #ffd6b0 100%);
   border-radius: 2px 2px 0 0;
   transition: transform 0.3s cubic-bezier(.4,0,.2,1), background 0.3s;
   z-index: 2;
   will-change: transform;
-  box-shadow: 0 2px 8px rgba(26,115,232,0.10);
+  box-shadow: 0 2px 8px rgba(255, 224, 138, 0.13);
 }
 
 .timeline-container {
@@ -844,8 +845,8 @@ body.light-mode .timeline-date {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #1a73e8;
-  color: #fff;
+  background: #ffe08a; /* Changed from blue to yellow-peach */
+  color: #232323;
   border-radius: 18px;
   padding: 10px 22px;
   font-size: 1em;
@@ -853,12 +854,12 @@ body.light-mode .timeline-date {
   text-decoration: none;
   margin: 8px 0;
   transition: background 0.2s, color 0.2s, transform 0.2s;
-  box-shadow: 0 2px 8px rgba(26,115,232,0.10);
+  box-shadow: 0 2px 8px rgba(255, 224, 138, 0.13);
 }
 
 .project-card-actions a:hover {
   background: #fff8dc;
-  color: #1a73e8;
+  color: #232323;
   transform: scale(1.07);
 }
 
