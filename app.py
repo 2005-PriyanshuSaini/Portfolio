@@ -68,4 +68,8 @@ def send_email():
     return redirect('/')
 
 if __name__ == '__main__':
+    # For local development only; use gunicorn for production
     app.run(debug=True)
+
+# Gunicorn entry point
+# To run with gunicorn: gunicorn --bind 0.0.0.0:8000 app:app
