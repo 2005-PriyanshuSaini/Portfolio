@@ -876,6 +876,45 @@ body.light-mode .timeline-date {
   transform: scale(1.07);
 }
 
+.project-tech {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: 0.98em;
+  color: #ffe08a;
+}
+.project-tech ul {
+  margin: 6px 0 0 18px;
+  padding: 0;
+  color: #fff8dc;
+  font-size: 0.97em;
+}
+.project-tech li {
+  margin-bottom: 2px;
+}
+
+.project-skills {
+  margin-top: 6px;
+  margin-bottom: 0;
+  font-size: 0.97em;
+  color: #ffd6b0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.skill-badge {
+  background: #ffe08a;
+  color: #232323;
+  border-radius: 12px;
+  padding: 3px 12px;
+  font-size: 0.93em;
+  font-weight: 500;
+  margin-right: 4px;
+  margin-bottom: 2px;
+  display: inline-block;
+  letter-spacing: 0.1px;
+}
+
 @media (max-width: 950px) {
   .projects-grid {
     flex-direction: column;
