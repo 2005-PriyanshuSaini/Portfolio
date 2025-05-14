@@ -2,7 +2,8 @@ import os
 import re
 import smtplib
 from email.message import EmailMessage
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect, flash, session, abort
+from functools import wraps
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -22,11 +23,40 @@ def is_valid_email(email):
     domain = email.split('@')[-1].lower()
     return domain == "gmail.com"
 
+def csrf_protect(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if request.method == "POST":
+            token = session.get('_csrf_token')
+            form_token = request.form.get('_csrf_token')
+            if not token or not form_token or token != form_token:
+                abort(400, description="CSRF token missing or invalid.")
+        return f(*args, **kwargs)
+    return decorated_function
+
+def generate_csrf_token():
+    import secrets
+    if '_csrf_token' not in session:
+        session['_csrf_token'] = secrets.token_urlsafe(32)
+    return session['_csrf_token']
+
+app.jinja_env.globals['csrf_token'] = generate_csrf_token
+
+@app.after_request
+def set_secure_headers(response):
+    response.headers['X-Frame-Options'] = 'DENY'
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['Referrer-Policy'] = 'no-referrer'
+    response.headers['Content-Security-Policy'] = "default-src 'self'; style-src 'self' 'unsafe-inline' fonts.googleapis.com cdnjs.cloudflare.com; font-src 'self' fonts.gstatic.com cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; img-src 'self' data:;"
+    response.headers['Strict-Transport-Security'] = 'max-age=63072000; includeSubDomains; preload'
+    return response
+
 @app.route('/')
 def home():
     return render_template('index.html')
 
 @app.route('/send-email', methods=['POST'])
+@csrf_protect
 def send_email():
     from_email = request.form.get('from')
     user_email = request.form.get('user_email')

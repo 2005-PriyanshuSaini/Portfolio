@@ -336,6 +336,19 @@ body.light-mode .footer-links a {
   color: #dddddd; /* Hover effect for links */
 }
 
+.footer-links a:active,
+.footer-links a:focus {
+  outline: none;
+  color: #ffe08a;
+  background: none;
+  box-shadow: none;
+}
+
+/* Remove persistent focus/active style for visited links */
+.footer-links a:visited {
+  color: #fff8dc;
+}
+
 .social-bar {
   display: flex;
   justify-content: center;

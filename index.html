@@ -194,6 +194,7 @@
     <section id="contact">
       <h2>Contact</h2>
       <form id="contact-form" class="contact-form" enctype="multipart/form-data" method="POST" action="/send-email">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
         <div class="form-group">
           <label for="from">From</label>
           <input type="email" id="from" name="from" value="priyanshusaini9991@gmail.com" readonly>

@@ -94,3 +94,15 @@ window.addEventListener('DOMContentLoaded', () => {
   if (slider) slider.style.transform = 'translateX(0%)';
 });
 
+// Remove hash from URL after clicking footer quick links
+document.querySelectorAll('.footer-links a').forEach(link => {
+  link.addEventListener('click', function (e) {
+    // Allow default jump to anchor
+    setTimeout(() => {
+      if (window.location.hash) {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+    }, 0);
+  });
+});
+
