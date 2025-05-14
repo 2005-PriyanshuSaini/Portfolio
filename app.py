@@ -15,13 +15,10 @@ GMAIL_USER = os.getenv("GMAIL_USER")
 GMAIL_PASS = os.getenv("GMAIL_PASS")
 
 def is_valid_email(email):
-    # Simple regex for email validation
     pattern = r"^[\w\.-]+@[\w\.-]+\.\w+$"
     if not re.match(pattern, email):
         return False
-    # Only allow gmail.com addresses
-    domain = email.split('@')[-1].lower()
-    return domain == "gmail.com"
+    return email.split('@')[-1].lower() == "gmail.com"
 
 def csrf_protect(f):
     @wraps(f)
@@ -44,15 +41,22 @@ app.jinja_env.globals['csrf_token'] = generate_csrf_token
 
 @app.after_request
 def set_secure_headers(response):
-    # Prevent aggressive caching of HTML so new deploys are always loaded
-    if request.path == "/" or request.path.endswith(".html"):
-        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
-        response.headers['Pragma'] = 'no-cache'
-        response.headers['Expires'] = '0'
+    # Prevent caching of all content (HTML, JS, CSS, etc.)
+    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+
+    # Security headers
     response.headers['X-Frame-Options'] = 'DENY'
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['Referrer-Policy'] = 'no-referrer'
-    response.headers['Content-Security-Policy'] = "default-src 'self'; style-src 'self' 'unsafe-inline' fonts.googleapis.com cdnjs.cloudflare.com; font-src 'self' fonts.gstatic.com cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; img-src 'self' data:;"
+    response.headers['Content-Security-Policy'] = (
+        "default-src 'self'; "
+        "style-src 'self' 'unsafe-inline' fonts.googleapis.com cdnjs.cloudflare.com; "
+        "font-src 'self' fonts.gstatic.com cdnjs.cloudflare.com; "
+        "script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; "
+        "img-src 'self' data:;"
+    )
     response.headers['Strict-Transport-Security'] = 'max-age=63072000; includeSubDomains; preload'
     return response
 
@@ -69,20 +73,17 @@ def send_email():
     body = request.form.get('body')
     attachment = request.files.get('attachment')
 
-    # Validate user email
     if not is_valid_email(user_email):
         flash("Please enter a valid Gmail address (ending with @gmail.com).")
         return redirect('/')
 
-    # Compose the email
     msg = EmailMessage()
     msg['Subject'] = subject
     msg['From'] = from_email
-    msg['To'] = from_email  # Send to yourself
+    msg['To'] = from_email
     msg['Reply-To'] = user_email
     msg.set_content(f"Message from: {user_email}\n\n{body}")
 
-    # Handle attachment
     if attachment and attachment.filename:
         file_data = attachment.read()
         if len(file_data) > 15 * 1024 * 1024:
@@ -90,7 +91,6 @@ def send_email():
             return redirect('/')
         msg.add_attachment(file_data, maintype='application', subtype='octet-stream', filename=attachment.filename)
 
-    # Send the email
     try:
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
             smtp.login(GMAIL_USER, GMAIL_PASS)
@@ -103,8 +103,7 @@ def send_email():
     return redirect('/')
 
 if __name__ == '__main__':
-    # For local development only; use gunicorn for production
     app.run(debug=True)
 
 # Gunicorn entry point
-# To run with gunicorn: gunicorn --bind 0.0.0.0:8000 app:app
+# Run with: gunicorn --bind 0.0.0.0:8000 app:app
