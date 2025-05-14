@@ -44,6 +44,11 @@ app.jinja_env.globals['csrf_token'] = generate_csrf_token
 
 @app.after_request
 def set_secure_headers(response):
+    # Prevent aggressive caching of HTML so new deploys are always loaded
+    if request.path == "/" or request.path.endswith(".html"):
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '0'
     response.headers['X-Frame-Options'] = 'DENY'
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['Referrer-Policy'] = 'no-referrer'
