@@ -51,7 +51,7 @@ body.light-mode .navbar ul li a:hover {
   display: none; /* Initially hidden */
   justify-content: space-between; /* Space between links and toggle button */
   align-items: center; /* Center items vertically */
-  padding: 10px 20px;
+  padding: 10px 10px;
   z-index: 1000; /* Ensure it stays above other elements */
   box-sizing: border-box; /* Include padding in width calculation */
 }
@@ -452,7 +452,7 @@ body.light-mode .contact-form {
 }
 
 body.light-mode .contact-form label {
-  color: #333;
+  color: #fff8dc;
 }
 
 .contact-form input[type="email"],
@@ -666,7 +666,7 @@ body.light-mode .contact-form input[type="file"] {
   border: 1.5px solid #232323;
   padding: 24px 24px 8px 24px;
   position: relative;
-  min-height: 320px;
+  min-height: fit-content;
   box-shadow: 0 2px 12px rgba(26,115,232,0.07);
   text-align: left; /* Add this to left-align content */
 }
@@ -939,7 +939,7 @@ body.light-mode .timeline-date {
     max-width: 98vw;
   }
   .timeline-section, .timeline-container {
-    max-width: 98vw;
+    max-width: 90vw;
     padding-left: 8px;
     padding-right: 8px;
   }
@@ -947,106 +947,133 @@ body.light-mode .timeline-date {
 
 @media (max-width: 600px) {
   html, body {
-    font-size: 22px;
+    font-size: 18px;
     min-width: 0;
     overflow-x: hidden;
   }
   #main-content {
-    padding: 8vw 2vw;
+    padding: 6vw 2vw;
     max-width: 100vw;
-    font-size: 1.18em;
+    font-size: 1.08em;
   }
   .intro {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 32px 4vw;
-    gap: 24px;
+    display: block !important;
+    padding: 28px 4vw 0 4vw;
     max-width: 100vw;
   }
   .intro-text {
     max-width: 100vw;
-    font-size: 1.18em;
+    font-size: 1.08em;
+    width: 100%;
+    margin-bottom: 24px;
   }
-  .intro-text h1 {
-    font-size: 1.7rem;
-    margin-bottom: 22px;
-  }
-  .intro-location {
-    font-size: 1.18em;
+  .intro-image {
+    width: 100%;
+    display: block !important;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+    margin-bottom: 18px;
   }
   .intro-image img {
-    width: 140px;
-    height: 180px;
-    margin: 0 auto;
+    width: 100px;
+    height: 120px;
+    margin: 0 auto 0 auto;
+    display: inline-block;
   }
-  .timeline-section, .timeline-container {
-    max-width: 100vw;
-    padding-left: 2vw;
-    padding-right: 2vw;
-  }
-  .timeline-item {
-    gap: 18px;
+  .projects-grid {
     flex-direction: column;
-    align-items: flex-start;
-  }
-  .timeline-icon {
-    width: 50px;
-    height: 50px;
-  }
-  .timeline-icon img {
-    width: 36px;
-    height: 36px;
+    align-items: center;
+    gap: 18px;
   }
   .project-card {
-    width: 99vw;
-    max-width: 100vw;
+    width: 92vw;
+    max-width: 340px;
     min-width: 0;
     height: auto;
-    margin-bottom: 32px;
+    margin-bottom: 0;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(26,115,232,0.08);
   }
   .project-card-content {
-    padding: 32px 16px 32px 16px;
+    padding: 16px 8px 16px 8px;
   }
   .project-title {
-    font-size: 1.25em;
+    font-size: 1em;
   }
   .project-desc {
-    font-size: 1.18em;
+    font-size: 0.95em;
   }
   .project-skills {
-    font-size: 1.15em;
-    gap: 10px;
+    font-size: 0.95em;
+    gap: 6px;
   }
   .skill-badge {
-    padding: 6px 18px;
-    font-size: 1.08em;
+    padding: 3px 10px;
+    font-size: 0.93em;
+  }
+  .project-card-actions a {
+    font-size: 0.98em;
+    padding: 8px 14px;
   }
   .footer {
-    padding: 24px 4vw;
-    font-size: 1.18em;
+    padding: 18px 4vw;
+    font-size: 1em;
   }
   .footer-links {
     flex-direction: column;
-    gap: 14px;
+    gap: 10px;
   }
   .social-bar {
-    gap: 10px;
-    padding: 10px;
-    margin-top: 18px;
+    gap: 8px;
+    padding: 8px;
+    margin-top: 14px;
   }
   .social-bar .icon {
-    width: 38px;
-    height: 38px;
-    font-size: 1.2rem;
+    width: 28px;
+    height: 28px;
+    font-size: 1em;
   }
   .contact-form {
-    max-width: 99vw;
-    padding: 24px 4vw 18px 4vw;
-    font-size: 1.18em;
+    max-width: 85vw;
+    padding: 14px 4vw 14px 4vw;
+    font-size: 1em;
   }
   .contact-form label,
   .contact-form input,
   .contact-form textarea {
-    font-size: 1.08em;
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 950px) and (min-width: 601px) {
+  .intro {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: 24px 10px;
+    gap: 16px;
+    max-width: 100vw;
+  }
+  .intro-text {
+    max-width: 60vw;
+    font-size: 1em;
+    margin-bottom: 0;
+    width: auto;
+  }
+  .intro-image {
+    width: auto;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    text-align: center;
+  }
+  .intro-image img {
+    width: 90px;
+    height: 130px;
+    margin: 0;
+    display: block;
   }
 }
