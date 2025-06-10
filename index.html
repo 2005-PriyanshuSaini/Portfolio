@@ -39,6 +39,170 @@
       0% { opacity: 0; transform: scale(0.95); }
       100% { opacity: 1; transform: scale(1); }
     }
+
+    /* Make location text darker */
+    .intro-location .location-text {
+      color: #fff8dc; /* Main color for dark mode */
+      font-weight: 500;
+    }
+    body.light-mode .intro-location .location-text {
+      color: #111;
+    }
+
+    /* Icon color adaptation for light/dark mode */
+    .intro .icon-btn {
+      background: #3a3a3a;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 6px;
+      transition: background 0.3s, box-shadow 0.3s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      text-decoration: none;
+    }
+    .intro .icon-btn i {
+      color: #f5f5f5;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+    body.light-mode .intro .icon-btn {
+      background: #fff;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    body.light-mode .intro .icon-btn i {
+      color: #222;
+    }
+
+    /* Optional: hover effect for both modes */
+    .intro .icon-btn:hover {
+      background: #e0e0e0;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    body.light-mode .intro .icon-btn:hover {
+      background: #f5f5f5;
+    }
+
+    /* Optional: location marker icon color */
+    .intro-location .location-marker i {
+      color: #e74c3c;
+      transition: color 0.3s;
+    }
+    body.light-mode .intro-location .location-marker i {
+      color: #b30000;
+    }
+
+    /* Resume button style for dark/light mode */
+    .resume-btn {
+      background: #3a3a3a;
+      color: #fff;
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      text-decoration: none !important; /* <-- Ensure no underline */
+      font-size: 1.1rem;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .resume-btn:visited,
+    .resume-btn:active,
+    .resume-btn:focus,
+    .resume-btn:hover {
+      text-decoration: none !important; /* <-- Remove underline in all states */
+    }
+    .resume-btn:hover {
+      background: #222;
+      color: #fff;
+    }
+    body.light-mode .resume-btn {
+      background: #fff;
+      color: #222;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    body.light-mode .resume-btn:hover {
+      background: #f5f5f5;
+      color: #111;
+    }
+    .resume-btn .resume-icon {
+      width: 1.3em;
+      height: 1.3em;
+      margin-right: 6px;
+      filter: invert(0);
+      transition: filter 0.3s;
+      
+    }
+    body.light-mode .resume-btn .resume-icon {
+      filter: invert(0.8);
+    }
+
+    /* Timeline tabs: active/inactive color and slider */
+    .timeline-tabs {
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      margin-bottom: 16px;
+    }
+    .timeline-tab {
+      background: none;
+      border: none;
+      outline: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #bfc3cf;
+      padding: 12px 36px 8px 36px;
+      cursor: pointer;
+      transition: color 0.3s;
+      position: relative;
+      z-index: 1;
+    }
+    /* Remove background on hover for inactive tabs */
+    .timeline-tab:not(.active):hover {
+      background: none;
+    }
+    .timeline-tab.active {
+      color: #fff; /* White text for contrast on dark background */
+      background: #232323;
+      border-radius: 8px 8px 0 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    body.light-mode .timeline-tab.active {
+      color: #fff;
+      background: #222;
+    }
+    body.light-mode .timeline-tab {
+      color: #3d3d3d; /* Darker gray for better readability in light mode */
+      background: none;
+    }
+    .tab-slider {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      width: 50%;
+      background: linear-gradient(90deg, #f7b733 0%, #fc4a1a 100%);
+      border-radius: 2px 2px 0 0;
+      transition: left 0.3s, width 0.3s;
+      z-index: 0;
+    }
+    /* JS should move .tab-slider left/right depending on active tab */
+
+    .intro .icon-btn {
+      /* ...existing code... */
+      text-decoration: none;
+    }
+    .social-bar .icon {
+      /* ...existing code... */
+      text-decoration: none;
+    }
+
   </style>
 </head>
 <body>
@@ -76,7 +240,7 @@
         <p>20-year-old software developer from India.<br> I like to develop full-stack, self-hosting homelabs, and get coding advice from my turtle, Luffy.</p>
         <div class="buttons">
           <!-- <a href="https://drive.google.com/file/d/1-2z_mVgygun_uHoySuZBhAwvxqfFnBQC/view?usp=sharing" target="_blank" class="resume-btn" title="Resume"> -->
-             <a href="./Priyanshu-Saini(SDE).pdf" target="_blank" class="resume-btn" title="Resume">
+            <a href="https://docs.google.com/document/d/1_LnjZy7qLLiSqB8eeqibY--Ht0c948B17oVZr9wiS1c/edit?usp=sharing" target="_blank" class="resume-btn" title="Resume">
             <img src="/resume-icon.svg" alt="Resume" class="resume-icon" />
             Resume
           </a>
@@ -107,7 +271,7 @@
           <div class="timeline-item">
             <div class="timeline-icon"><img src="./arka.webp" alt="Arka"></div>
             <div class="timeline-details">
-              <div class="timeline-date">July 2024 - March 2025</div>
+              <div class="timeline-date">July 2024 - February 2025</div>
               <div class="timeline-title">Arka Consultancy</div>
               <div class="timeline-role">Intern Web and AI Developer</div>
             </div>
@@ -117,7 +281,7 @@
             <div class="timeline-icon"><img src="./cu.jpg" alt="Chandigarh University"></div>
             <div class="timeline-details">
               <div class="timeline-date">Jan 2025 - Apr 2025</div>
-              <div class="timeline-title">Research</div>
+              <div class="timeline-title">Technical Research Analyst</div>
               <div class="timeline-role">Researcher</div>
             </div>
           </div>
@@ -159,8 +323,35 @@
     <section id="projects">
       <h2>Featured Projects</h2>
       <div class="projects-grid">
+
         <div class="project-card">
-          <img src="./landing page anayser.png" alt="Project 1 Background" class="project-card-bg" />
+          <img src="./Copilot_20250610_153041.png" alt="Project 1 Background" class="project-card-bg" />
+          <div class="project-card-content">
+            <div class="project-title">AutoSocial - AI</div>
+            <div class="project-desc">
+              A powerful automation tool that monitors your codebase for changes and automatically generates engaging posts accordingly for social media platforms with zero manual effort.
+            </div>
+            <div class="project-skills">
+              <strong>Skills:</strong>
+              <span class="skill-badge">API Integration</span>
+              <span class="skill-badge">Restful APIs</span>
+              <span class="skill-badge">Opensource LLMs</span>
+              <span class="skill-badge">Watchdog</span>
+              <span class="skill-badge">FastAPI</span>
+            </div>
+          </div>
+          <div class="project-card-actions">
+            <a href="https://github.com/2005-PriyanshuSaini/AutoSocial-AI.git" target="_blank">
+              <i class="fab fa-github"></i> Source Code
+            </a>
+            <a href="https://auto-social-nine.vercel.app/" target="_blank">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="./landing page anayser.png" alt="Project 2 Background" class="project-card-bg" />
           <div class="project-card-content">
             <div class="project-title">Landing Page Analyser</div>
             <div class="project-desc">
@@ -179,13 +370,14 @@
             <a href="https://github.com/2005-PriyanshuSaini/Landing-Page-Analyser.git" target="_blank">
               <i class="fab fa-github"></i> Source Code
             </a>
-            <a href="https://project-one-demo.com" target="_blank">
+            <a href="https://lpa-intro.vercel.app/" target="_blank">
               <i class="fas fa-external-link-alt"></i> Live Demo
             </a>
           </div>
         </div>
+
         <div class="project-card">
-          <img src="./nlp.jpeg" alt="Project 2 Background" class="project-card-bg" />
+          <img src="./nlp.jpeg" alt="Project 3 Background" class="project-card-bg" />
           <div class="project-card-content">
             <div class="project-title">Restaurant Management NLP Chatbot</div>
             <div class="project-desc">
@@ -204,11 +396,38 @@
             <a href="https://github.com/2005-PriyanshuSaini/NLP_Chatbot-Dialog_flow.git" target="_blank">
               <i class="fab fa-github"></i> Source Code
             </a>
-            <a href="https://project-two-demo.com" target="_blank">
+            <a href="https://github.com/2005-PriyanshuSaini/NLP_Chatbot-Dialog_flow.git" target="_blank">
               <i class="fas fa-external-link-alt"></i> Live Demo
             </a>
           </div>
         </div>
+
+        <div class="project-card">
+          <img src="./Copilot_20250610_153400.png" alt="Project 3 Background" class="project-card-bg" />
+          <div class="project-card-content">
+            <div class="project-title">Customer Satisfaction Prediction</div>
+            <div class="project-desc">
+              An end‑to‑end MLOps pipeline built with ZenML, MLflow, and Streamlit for automated prediction and deployment of customer satisfaction scores on ecommerce transactions.
+            </div>
+            <div class="project-skills">
+              <strong>Skills:</strong>
+              <span class="skill-badge">MLOps</span>
+              <span class="skill-badge">ZenML</span>
+              <span class="skill-badge">MLflow</span>
+              <span class="skill-badge">Streamlit</span>
+              <span class="skill-badge">APIs</span>
+            </div>
+          </div>
+          <div class="project-card-actions">
+            <a href="https://github.com/2005-PriyanshuSaini/customer-satisfaction-using-mloperations.git" target="_blank">
+              <i class="fab fa-github"></i> Source Code
+            </a>
+            <a href="https://github.com/2005-PriyanshuSaini/customer-satisfaction-using-mloperations.git" target="_blank">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+          </div>
+        </div>
+        
       </div>
     </section>
     
